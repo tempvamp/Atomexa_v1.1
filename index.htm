@@ -183,6 +183,12 @@
             .filter-btn { font-size: 14px; padding: 8px 16px; }
             .bom-table th, .bom-table td { font-size: 12px; padding: 6px; }
         }
+        .centered-text {
+            text-align: center;
+        }
+        .justified-text {
+            text-align: justify;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -209,7 +215,7 @@
 
         <section id="overview" class="container mx-auto px-4 py-16 fade-in">
             <h2 class="section-title text-3xl sm:text-5xl text-center mb-10">Project Overview</h2>
-            <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10">This project converts the Powder Transfer System's (PCS) lower control panel from a traditional, hard-wired relay system to a modern, flexible, and highly protected embedded system, enhancing reliability, simplifying maintenance, and enabling advanced control capabilities.</p>
+            <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10 centered-text">This project converts the Powder Transfer System's (PCS) lower control panel from a traditional, hard-wired relay system to a modern, flexible, and highly protected embedded system, enhancing reliability, simplifying maintenance, and enabling advanced control capabilities.</p>
             <div class="grid md:grid-cols-2 gap-10">
                 <div class="card p-6 relative slide-in">
                     <h3 class="text-2xl font-semibold mb-4 text-blue-400">Key Benefits</h3>
@@ -222,7 +228,7 @@
                 </div>
                 <div class="card p-6 relative tech-shift">
                     <h3 class="text-2xl font-semibold mb-4 text-blue-400">Core Technology</h3>
-                    <p class="text-lg">The project leverages the STM32G474RET6 Microcontroller from STMicroelectronics, replacing discrete timers, relays, and indicators with a centralized, programmable unit. This high-performance MCU consolidates control logic, interfaces with the HMI, and operates using the existing 24VDC power supply, ensuring efficient and reliable system performance.</p>
+                    <p class="text-lg justified-text">The project leverages the STM32G474RET6 Microcontroller from STMicroelectronics, replacing discrete timers, relays, and indicators with a centralized, programmable unit. This high-performance MCU consolidates control logic, interfaces with the HMI, and operates using the existing 24VDC power supply, ensuring efficient and reliable system performance.</p>
                 </div>
             </div>
         </section>
@@ -545,28 +551,8 @@
             const componentGrid = document.getElementById('component-grid');
             const filterButtons = document.querySelectorAll('.filter-btn');
 
-            const renderCategories = () => {
-                componentGrid.innerHTML = '';
-                const categories = ['All', 'Microcontrollers', 'Display', 'Power Components', 'I/O Components', 'Mechanical', 'Miscellaneous'];
-                categories.forEach(category => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `<h4 class="text-xl font-semibold mb-2 text-white">${category}</h4>`;
-                    componentGrid.appendChild(card);
-                });
-            };
-
             const renderComponents = (filter = 'all') => {
                 componentGrid.innerHTML = '';
-                const categories = ['All', 'Microcontrollers', 'Display', 'Power Components', 'I/O Components', 'Mechanical', 'Miscellaneous'];
-                categories.forEach(category => {
-                    if (filter === 'all' || category === filter) {
-                        const card = document.createElement('div');
-                        card.className = 'card';
-                        card.innerHTML = `<h4 class="text-xl font-semibold mb-2 text-white">${category}</h4>`;
-                        componentGrid.appendChild(card);
-                    }
-                });
                 const componentData = [
                     { name: 'Main MCU', category: 'Microcontrollers', component: 'STM32G474RET6', manufacturer: 'STMicroelectronics', quantity: '1' },
                     { name: 'HMI Display', category: 'Display', component: 'Nextion 3.5" HMI', manufacturer: 'Nextion (ITEAD)', quantity: '1' },
@@ -626,7 +612,7 @@
                 });
             });
 
-            renderCategories();
+            renderComponents('all');
         });
     </script>
 </body>
