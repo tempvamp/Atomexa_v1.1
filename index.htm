@@ -27,28 +27,63 @@
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
-        .component-table td {
+        .component-table {
+            width: 100%;
+            table-layout: fixed; /* Ensure table columns adjust to fit */
+        }
+        .component-table td, .component-table th {
             @media (max-width: 767px) {
-                max-width: 120px;
-                white-space: normal;
-                font-size: 10pt;
+                max-width: 80px;
+                font-size: 8pt;
+                padding: 4px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap; /* Prevent text wrapping to reduce width */
             }
             @media (min-width: 768px) {
                 max-width: 150px;
-                white-space: normal;
                 font-size: 11pt;
+                padding: 8px;
+                white-space: normal;
             }
         }
-        .component-table th {
+        #component-grid {
             @media (max-width: 767px) {
-                max-width: 120px;
-                white-space: normal;
-                font-size: 9pt;
+                grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3-column grid for mobile */
+                gap: 8px;
             }
-            @media (min-width: 768px) {
-                max-width: 150px;
-                white-space: normal;
-                font-size: 9.5pt;
+            @media (min-width: 768px) and (max-width: 1023px) {
+                grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2-column grid for tablets */
+                gap: 12px;
+            }
+            @media (min-width: 1024px) and (max-width: 1279px) {
+                grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3-column grid for laptops */
+                gap: 16px;
+            }
+            @media (min-width: 1280px) {
+                grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4-column grid for desktops */
+                gap: 16px;
+            }
+        }
+        .component-card {
+            @media (max-width: 767px) {
+                padding: 8px;
+            }
+        }
+        .component-card h4 {
+            @media (max-width: 767px) {
+                font-size: 10pt;
+            }
+        }
+        .component-card .text-xs {
+            @media (max-width: 767px) {
+                font-size: 8pt;
+            }
+        }
+        .component-card span {
+            @media (max-width: 767px) {
+                font-size: 7pt;
+                padding: 2px 4px;
             }
         }
     </style>
@@ -120,7 +155,7 @@
                     <button data-filter="Miscellaneous" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Miscellaneous</button>
                 </div>
             </div>
-            <div id="component-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"></div>
+            <atomic-result-list id="component-grid" class="grid"></atomic-result-list>
         </section>
 
         <section id="protection" class="mb-16 sm:mb-24 scroll-mt-24">
