@@ -95,6 +95,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
             padding: 8px;
+            cursor: pointer;
         }
         .card:hover {
             transform: translateY(-5px);
@@ -541,56 +542,66 @@
                 });
             });
 
-            const componentData = [
-                { name: 'Main MCU', category: 'Microcontrollers', component: 'STM32G474RET6', manufacturer: 'STMicroelectronics', quantity: '1' },
-                { name: 'HMI Display', category: 'Display', component: 'Nextion 3.5" HMI', manufacturer: 'Nextion (ITEAD)', quantity: '1' },
-                { name: 'HMI-MCU Cable', category: 'Display', component: '4-Pin Jumper Wires', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Power IC (MCU)', category: 'Power Components', component: 'LM2596S-3.3', manufacturer: 'Texas Instruments', quantity: '1' },
-                { name: 'Power Diode', category: 'Power Components', component: 'Schottky (SS34)', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Filter Cap (24V)', category: 'Power Components', component: '100µF, 50V', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Filter Cap (24V)', category: 'Power Components', component: '0.1µF Ceramic', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Filter Cap (3.3V)', category: 'Power Components', component: '10µF, 10V', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Filter Cap (3.3V)', category: 'Power Components', component: '0.1µF Ceramic', manufacturer: 'N/A', quantity: '1' },
-                { name: 'TVS Diode (24V)', category: 'Power Components', component: 'SMBJ24A', manufacturer: 'Littelfuse', quantity: '1' },
-                { name: 'TVS Diode (3.3V)', category: 'Power Components', component: 'SMF3.3A', manufacturer: 'Vishay', quantity: '1' },
-                { name: 'Input Optocoupler', category: 'I/O Components', component: 'HCPL-0630', manufacturer: 'Broadcom', quantity: '5' },
-                { name: 'Output SSR', category: 'I/O Components', component: 'G3VM-61G1', manufacturer: 'Omron', quantity: '8' },
-                { name: 'Input Resistors', category: 'I/O Components', component: '1.8 kΩ, 1/4W', manufacturer: 'N/A', quantity: '5' },
-                { name: 'Output Resistors', category: 'I/O Components', component: '10 kΩ, 1/4W', manufacturer: 'N/A', quantity: '8' },
-                { name: 'Output Transistors', category: 'I/O Components', component: 'MOSFET (2N7000)', manufacturer: 'N/A', quantity: '8' },
-                { name: 'MCU Crystal', category: 'Microcontrollers', component: '8 MHz Crystal', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Reset Button', category: 'Miscellaneous', component: 'Tactile Switch', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Power LED', category: 'Power Components', component: 'Green LED', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Heartbeat LED', category: 'Power Components', component: 'Blue LED', manufacturer: 'N/A', quantity: '1' },
-                { name: 'Limit Resistor', category: 'Power Components', component: '330 Ω, 1/4W', manufacturer: 'N/A', quantity: '2' },
-                { name: 'Input Terminal', category: 'I/O Components', component: '2-pin Terminal', manufacturer: 'Phoenix Contact', quantity: '5' },
-                { name: 'Output Terminal', category: 'I/O Components', component: '2-pin Terminal', manufacturer: 'Phoenix Contact', quantity: '8' },
-                { name: 'PCB Terminal', category: 'I/O Components', component: '2-pin Connector', manufacturer: 'N/A', quantity: '2' },
-                { name: 'DIN Rail Holder', category: 'Mechanical', component: '—', manufacturer: 'Phoenix Contact', quantity: '1' },
-                { name: 'Custom PCB', category: 'Mechanical', component: '—', manufacturer: 'Local Fabricator', quantity: '1' },
-                { name: 'Wires', category: 'Mechanical', component: '22AWG Wires', manufacturer: 'N/A', quantity: '1 Roll' },
-                { name: 'Wire Ferrules', category: 'Mechanical', component: '0.5 mm²', manufacturer: 'N/A', quantity: '1 Pack' },
-                { name: 'Cable Ties', category: 'Mechanical', component: 'Assorted Ties', manufacturer: 'N/A', quantity: '1 Pack' },
-                { name: 'Heat Shrink', category: 'Mechanical', component: 'Assorted Sizes', manufacturer: 'N/A', quantity: '1 Pack' },
-                { name: 'Misc Material', category: 'Mechanical', component: 'Solder, Flux', manufacturer: 'N/A', quantity: '1 Lot' },
-                { name: 'Transport', category: 'Miscellaneous', component: '—', manufacturer: 'N/A', quantity: 'N/A' },
-                { name: 'Labour', category: 'Miscellaneous', component: '—', manufacturer: 'N/A', quantity: 'N/A' }
-            ];
-
             const componentGrid = document.getElementById('component-grid');
             const filterButtons = document.querySelectorAll('.filter-btn');
+
+            const renderCategories = () => {
+                componentGrid.innerHTML = '';
+                const categories = ['All', 'Microcontrollers', 'Display', 'Power Components', 'I/O Components', 'Mechanical', 'Miscellaneous'];
+                categories.forEach(category => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `<h4 class="text-xl font-semibold mb-2 text-white">${category}</h4>`;
+                    componentGrid.appendChild(card);
+                });
+            };
 
             const renderComponents = (filter = 'all') => {
                 componentGrid.innerHTML = '';
                 const categories = ['All', 'Microcontrollers', 'Display', 'Power Components', 'I/O Components', 'Mechanical', 'Miscellaneous'];
                 categories.forEach(category => {
-                    if (filter === 'all' || category === filter || (category !== 'All' && filter === category)) {
+                    if (filter === 'all' || category === filter) {
                         const card = document.createElement('div');
                         card.className = 'card';
                         card.innerHTML = `<h4 class="text-xl font-semibold mb-2 text-white">${category}</h4>`;
                         componentGrid.appendChild(card);
                     }
                 });
+                const componentData = [
+                    { name: 'Main MCU', category: 'Microcontrollers', component: 'STM32G474RET6', manufacturer: 'STMicroelectronics', quantity: '1' },
+                    { name: 'HMI Display', category: 'Display', component: 'Nextion 3.5" HMI', manufacturer: 'Nextion (ITEAD)', quantity: '1' },
+                    { name: 'HMI-MCU Cable', category: 'Display', component: '4-Pin Jumper Wires', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Power IC (MCU)', category: 'Power Components', component: 'LM2596S-3.3', manufacturer: 'Texas Instruments', quantity: '1' },
+                    { name: 'Power Diode', category: 'Power Components', component: 'Schottky (SS34)', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Filter Cap (24V)', category: 'Power Components', component: '100µF, 50V', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Filter Cap (24V)', category: 'Power Components', component: '0.1µF Ceramic', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Filter Cap (3.3V)', category: 'Power Components', component: '10µF, 10V', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Filter Cap (3.3V)', category: 'Power Components', component: '0.1µF Ceramic', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'TVS Diode (24V)', category: 'Power Components', component: 'SMBJ24A', manufacturer: 'Littelfuse', quantity: '1' },
+                    { name: 'TVS Diode (3.3V)', category: 'Power Components', component: 'SMF3.3A', manufacturer: 'Vishay', quantity: '1' },
+                    { name: 'Input Optocoupler', category: 'I/O Components', component: 'HCPL-0630', manufacturer: 'Broadcom', quantity: '5' },
+                    { name: 'Output SSR', category: 'I/O Components', component: 'G3VM-61G1', manufacturer: 'Omron', quantity: '8' },
+                    { name: 'Input Resistors', category: 'I/O Components', component: '1.8 kΩ, 1/4W', manufacturer: 'N/A', quantity: '5' },
+                    { name: 'Output Resistors', category: 'I/O Components', component: '10 kΩ, 1/4W', manufacturer: 'N/A', quantity: '8' },
+                    { name: 'Output Transistors', category: 'I/O Components', component: 'MOSFET (2N7000)', manufacturer: 'N/A', quantity: '8' },
+                    { name: 'MCU Crystal', category: 'Microcontrollers', component: '8 MHz Crystal', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Reset Button', category: 'Miscellaneous', component: 'Tactile Switch', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Power LED', category: 'Power Components', component: 'Green LED', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Heartbeat LED', category: 'Power Components', component: 'Blue LED', manufacturer: 'N/A', quantity: '1' },
+                    { name: 'Limit Resistor', category: 'Power Components', component: '330 Ω, 1/4W', manufacturer: 'N/A', quantity: '2' },
+                    { name: 'Input Terminal', category: 'I/O Components', component: '2-pin Terminal', manufacturer: 'Phoenix Contact', quantity: '5' },
+                    { name: 'Output Terminal', category: 'I/O Components', component: '2-pin Terminal', manufacturer: 'Phoenix Contact', quantity: '8' },
+                    { name: 'PCB Terminal', category: 'I/O Components', component: '2-pin Connector', manufacturer: 'N/A', quantity: '2' },
+                    { name: 'DIN Rail Holder', category: 'Mechanical', component: '—', manufacturer: 'Phoenix Contact', quantity: '1' },
+                    { name: 'Custom PCB', category: 'Mechanical', component: '—', manufacturer: 'Local Fabricator', quantity: '1' },
+                    { name: 'Wires', category: 'Mechanical', component: '22AWG Wires', manufacturer: 'N/A', quantity: '1 Roll' },
+                    { name: 'Wire Ferrules', category: 'Mechanical', component: '0.5 mm²', manufacturer: 'N/A', quantity: '1 Pack' },
+                    { name: 'Cable Ties', category: 'Mechanical', component: 'Assorted Ties', manufacturer: 'N/A', quantity: '1 Pack' },
+                    { name: 'Heat Shrink', category: 'Mechanical', component: 'Assorted Sizes', manufacturer: 'N/A', quantity: '1 Pack' },
+                    { name: 'Misc Material', category: 'Mechanical', component: 'Solder, Flux', manufacturer: 'N/A', quantity: '1 Lot' },
+                    { name: 'Transport', category: 'Miscellaneous', component: '—', manufacturer: 'N/A', quantity: 'N/A' },
+                    { name: 'Labour', category: 'Miscellaneous', component: '—', manufacturer: 'N/A', quantity: 'N/A' }
+                ];
                 const filteredData = filter === 'all' ? componentData : componentData.filter(c => c.category === filter);
                 filteredData.forEach(component => {
                     const card = document.createElement('div');
@@ -615,7 +626,7 @@
                 });
             });
 
-            renderComponents('all');
+            renderCategories();
         });
     </script>
 </body>
