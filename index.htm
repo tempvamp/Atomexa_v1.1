@@ -152,6 +152,26 @@
             text-align: left;
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
+        .benefits-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .benefits-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+        .benefits-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
         @media (max-width: 640px) {
             .hero h1 { font-size: 24px; }
             .hero p { font-size: 12px; }
@@ -166,6 +186,8 @@
             header h1 { font-size: 18px; }
             header .nav-link { font-size: 12px; }
             .tech-shift::before { width: 50px; height: 50px; }
+            .benefits-list li { padding-left: 16px; font-size: 12px; }
+            .benefits-list li::before { width: 6px; height: 6px; }
         }
         @media (min-width: 641px) and (max-width: 1024px) {
             .component-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -174,6 +196,8 @@
             .card p { font-size: 12px; }
             .filter-btn { font-size: 12px; padding: 6px 12px; }
             .bom-table th, .bom-table td { font-size: 10px; padding: 4px; }
+            .benefits-list li { padding-left: 18px; font-size: 14px; }
+            .benefits-list li::before { width: 7px; height: 7px; }
         }
         @media (min-width: 1025px) {
             .component-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
@@ -182,6 +206,8 @@
             .card p { font-size: 14px; }
             .filter-btn { font-size: 14px; padding: 8px 16px; }
             .bom-table th, .bom-table td { font-size: 12px; padding: 6px; }
+            .benefits-list li { padding-left: 20px; font-size: 16px; }
+            .benefits-list li::before { width: 8px; height: 8px; }
         }
         .centered-text {
             text-align: center;
@@ -219,11 +245,11 @@
             <div class="grid md:grid-cols-2 gap-10">
                 <div class="card p-6 relative slide-in">
                     <h3 class="text-2xl font-semibold mb-4 text-blue-400">Key Benefits</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>Enhanced flexibility via software-based logic</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>Improved user experience with a central HMI</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>Reduced wiring complexity and maintenance</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>Increased system reliability and safety</li>
+                    <ul class="benefits-list space-y-3">
+                        <li>Enhanced flexibility via software-based logic</li>
+                        <li>Improved user experience with a central HMI</li>
+                        <li>Reduced wiring complexity and maintenance</li>
+                        <li>Increased system reliability and safety</li>
                     </ul>
                 </div>
                 <div class="card p-6 relative tech-shift">
