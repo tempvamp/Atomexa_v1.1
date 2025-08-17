@@ -37,6 +37,19 @@
                 white-space: normal;
             }
         }
+        .click-me {
+            animation: pulse 1.5s infinite;
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        .click-me:hover {
+            transform: scale(1.08);
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body class="text-slate-700">
@@ -97,13 +110,13 @@
                 <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">Component Explorer</h2>
                 <p class="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto">Explore the components of the modernized PCS control panel. Use filters to sort by category.</p>
                 <div id="component-filters" class="mt-4 sm:mt-6 flex justify-center flex-wrap gap-2">
-                    <button data-filter="all" class="filter-btn bg-blue-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-md text-xs sm:text-sm">All</button>
-                    <button data-filter="Microcontrollers" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Microcontrollers</button>
-                    <button data-filter="Display" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Display</button>
-                    <button data-filter="Power Components" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Power Components</button>
-                    <button data-filter="I/O Components" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">I/O Components</button>
-                    <button data-filter="Mechanical" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Mechanical</button>
-                    <button data-filter="Miscellaneous" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Miscellaneous</button>
+                    <button data-filter="all" class="filter-btn bg-blue-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-md text-xs sm:text-sm click-me">All</button>
+                    <button data-filter="Microcontrollers" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Microcontrollers</button>
+                    <button data-filter="Display" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Display</button>
+                    <button data-filter="Power Components" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Power Components</button>
+                    <button data-filter="I/O Components" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">I/O Components</button>
+                    <button data-filter="Mechanical" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Mechanical</button>
+                    <button data-filter="Miscellaneous" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Miscellaneous</button>
                 </div>
             </div>
             <div id="component-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"></div>
@@ -434,9 +447,11 @@
 
             const componentGrid = document.getElementById('component-grid');
             const filterButtons = document.querySelectorAll('.filter-btn');
+            let activeFilter = null;
 
             const renderComponents = (filter) => {
                 componentGrid.innerHTML = '';
+                if (!filter) return; // No components displayed if no filter is active
                 const filteredData = (filter === 'all') ? componentData : componentData.filter(c => c.type === filter);
                 
                 filteredData.forEach(component => {
@@ -457,20 +472,41 @@
                 });
             };
 
+            const updateButtonStyles = () => {
+                filterButtons.forEach(btn => {
+                    const filter = btn.dataset.filter;
+                    if (filter === activeFilter) {
+                        btn.classList.remove('bg-white', 'text-slate-600', 'border', 'click-me');
+                        btn.classList.add('bg-blue-600', 'text-white');
+                    } else {
+                        btn.classList.remove('bg-blue-600', 'text-white');
+                        btn.classList.add('bg-white', 'text-slate-600', 'border', 'click-me');
+                    }
+                });
+                // Ensure "All" has click-me animation if no filter is active
+                if (!activeFilter) {
+                    const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+                    allButton.classList.remove('bg-white', 'text-slate-600', 'border');
+                    allButton.classList.add('bg-blue-600', 'text-white', 'click-me');
+                }
+            };
+
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const filter = button.dataset.filter;
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('bg-blue-600', 'text-white');
-                        btn.classList.add('bg-white', 'text-slate-600');
-                    });
-                    button.classList.add('bg-blue-600', 'text-white');
-                    button.classList.remove('bg-white', 'text-slate-600');
-                    renderComponents(filter);
+                    if (filter === activeFilter) {
+                        activeFilter = null; // Clear active filter
+                        renderComponents(null); // Clear grid
+                    } else {
+                        activeFilter = filter;
+                        renderComponents(filter);
+                    }
+                    updateButtonStyles();
                 });
             });
 
-            renderComponents('all');
+            // Initialize with no components displayed and "All" button highlighted with animation
+            updateButtonStyles();
 
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section');
