@@ -125,11 +125,8 @@
         }
         .component-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        @media (max-width: 640px) {
-            .component-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
         .filter-btn {
             transition: all 0.3s ease;
@@ -142,6 +139,46 @@
         .active-filter {
             background: #3b82f6;
             color: #fff;
+        }
+        .bom-item {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 24px; }
+            .hero p { font-size: 12px; }
+            .section-title { font-size: 20px; }
+            .card { padding: 6px; }
+            .card h3, .card h4 { font-size: 14px; }
+            .card p, .card li { font-size: 10px; }
+            .component-grid { grid-template-columns: repeat(1, 1fr); gap: 6px; }
+            .filter-btn { font-size: 10px; padding: 4px 8px; }
+            .bom-item { font-size: 10px; }
+            header nav { flex-direction: column; gap: 10px; }
+            header h1 { font-size: 18px; }
+            header .nav-link { font-size: 12px; }
+            .tech-shift::before { width: 50px; height: 50px; }
+        }
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .component-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .card { padding: 8px; }
+            .card h3, .card h4 { font-size: 16px; }
+            .card p, .card li { font-size: 12px; }
+            .filter-btn { font-size: 12px; padding: 6px 12px; }
+            .bom-item { font-size: 12px; }
+        }
+        @media (min-width: 1025px) {
+            .component-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+            .card { padding: 10px; }
+            .card h3, .card h4 { font-size: 18px; }
+            .card p, .card li { font-size: 14px; }
+            .filter-btn { font-size: 14px; padding: 8px 16px; }
+            .bom-item { font-size: 14px; }
         }
     </style>
 </head>
@@ -189,7 +226,7 @@
 
         <section id="components" class="container mx-auto px-4 py-16 fade-in">
             <h2 class="section-title text-3xl sm:text-5xl text-center mb-10">Component Explorer</h2>
-            <div class="flex justify-center gap-2 mb-6">
+            <div class="flex justify-center gap-2 mb-6 flex-wrap">
                 <button data-filter="all" class="filter-btn px-4 py-2 bg-gray-800 text-white rounded-lg">All</button>
                 <button data-filter="Microcontrollers" class="filter-btn px-4 py-2 bg-gray-800 text-white rounded-lg">Microcontrollers</button>
                 <button data-filter="Display" class="filter-btn px-4 py-2 bg-gray-800 text-white rounded-lg">Display</button>
@@ -227,252 +264,7 @@
         <section id="bom" class="container mx-auto px-4 py-16 fade-in">
             <h2 class="section-title text-3xl sm:text-5xl text-center mb-10">Bill of Materials</h2>
             <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10">Detailed list of components for the modernized PCS control panel.</p>
-            <div class="overflow-x-auto">
-                <table class="w-full bg-gray-800 text-white">
-                    <thead>
-                        <tr class="bg-gray-900">
-                            <th class="px-4 py-2">Sr. No.</th>
-                            <th class="px-4 py-2">Description</th>
-                            <th class="px-4 py-2">Name</th>
-                            <th class="px-4 py-2">Company</th>
-                            <th class="px-4 py-2">Qty</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">1</td>
-                            <td class="px-4 py-2">Main MCU</td>
-                            <td class="px-4 py-2">STM32G474RET6</td>
-                            <td class="px-4 py-2">STMicroelectronics</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">2</td>
-                            <td class="px-4 py-2">HMI Display</td>
-                            <td class="px-4 py-2">Nextion 3.5" HMI</td>
-                            <td class="px-4 py-2">Nextion (ITEAD)</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">3</td>
-                            <td class="px-4 py-2">HMI-MCU Cable</td>
-                            <td class="px-4 py-2">4-Pin Jumper Wires</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">4</td>
-                            <td class="px-4 py-2">Power IC (MCU)</td>
-                            <td class="px-4 py-2">LM2596S-3.3</td>
-                            <td class="px-4 py-2">Texas Instruments</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">5</td>
-                            <td class="px-4 py-2">Power Diode</td>
-                            <td class="px-4 py-2">Schottky (SS34)</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">6</td>
-                            <td class="px-4 py-2">Filter Cap (24V)</td>
-                            <td class="px-4 py-2">100µF, 50V</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">7</td>
-                            <td class="px-4 py-2">Filter Cap (24V)</td>
-                            <td class="px-4 py-2">0.1µF Ceramic</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">8</td>
-                            <td class="px-4 py-2">Filter Cap (3.3V)</td>
-                            <td class="px-4 py-2">10µF, 10V</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">9</td>
-                            <td class="px-4 py-2">Filter Cap (3.3V)</td>
-                            <td class="px-4 py-2">0.1µF Ceramic</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">10</td>
-                            <td class="px-4 py-2">TVS Diode (24V)</td>
-                            <td class="px-4 py-2">SMBJ24A</td>
-                            <td class="px-4 py-2">Littelfuse</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">11</td>
-                            <td class="px-4 py-2">TVS Diode (3.3V)</td>
-                            <td class="px-4 py-2">SMF3.3A</td>
-                            <td class="px-4 py-2">Vishay</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">12</td>
-                            <td class="px-4 py-2">Input Optocoupler</td>
-                            <td class="px-4 py-2">HCPL-0630</td>
-                            <td class="px-4 py-2">Broadcom</td>
-                            <td class="px-4 py-2">5</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">13</td>
-                            <td class="px-4 py-2">Output SSR</td>
-                            <td class="px-4 py-2">G3VM-61G1</td>
-                            <td class="px-4 py-2">Omron</td>
-                            <td class="px-4 py-2">8</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">14</td>
-                            <td class="px-4 py-2">Input Resistors</td>
-                            <td class="px-4 py-2">1.8 kΩ, 1/4W</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">5</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">15</td>
-                            <td class="px-4 py-2">Output Resistors</td>
-                            <td class="px-4 py-2">10 kΩ, 1/4W</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">8</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">16</td>
-                            <td class="px-4 py-2">Output Transistors</td>
-                            <td class="px-4 py-2">MOSFET (2N7000)</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">8</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">17</td>
-                            <td class="px-4 py-2">MCU Crystal</td>
-                            <td class="px-4 py-2">8 MHz Crystal</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">18</td>
-                            <td class="px-4 py-2">Reset Button</td>
-                            <td class="px-4 py-2">Tactile Switch</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">19</td>
-                            <td class="px-4 py-2">Power LED</td>
-                            <td class="px-4 py-2">Green LED</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">20</td>
-                            <td class="px-4 py-2">Heartbeat LED</td>
-                            <td class="px-4 py-2">Blue LED</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">21</td>
-                            <td class="px-4 py-2">Limit Resistor</td>
-                            <td class="px-4 py-2">330 Ω, 1/4W</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">2</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">22</td>
-                            <td class="px-4 py-2">Input Terminal</td>
-                            <td class="px-4 py-2">2-pin Terminal</td>
-                            <td class="px-4 py-2">Phoenix Contact</td>
-                            <td class="px-4 py-2">5</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">23</td>
-                            <td class="px-4 py-2">Output Terminal</td>
-                            <td class="px-4 py-2">2-pin Terminal</td>
-                            <td class="px-4 py-2">Phoenix Contact</td>
-                            <td class="px-4 py-2">8</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">24</td>
-                            <td class="px-4 py-2">PCB Terminal</td>
-                            <td class="px-4 py-2">2-pin Connector</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">2</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">25</td>
-                            <td class="px-4 py-2">DIN Rail Holder</td>
-                            <td class="px-4 py-2">—</td>
-                            <td class="px-4 py-2">Phoenix Contact</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">26</td>
-                            <td class="px-4 py-2">Custom PCB</td>
-                            <td class="px-4 py-2">—</td>
-                            <td class="px-4 py-2">Local Fabricator</td>
-                            <td class="px-4 py-2">1</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">27</td>
-                            <td class="px-4 py-2">Wires</td>
-                            <td class="px-4 py-2">22AWG Wires</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1 Roll</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">28</td>
-                            <td class="px-4 py-2">Wire Ferrules</td>
-                            <td class="px-4 py-2">0.5 mm²</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1 Pack</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">29</td>
-                            <td class="px-4 py-2">Cable Ties</td>
-                            <td class="px-4 py-2">Assorted Ties</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1 Pack</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">30</td>
-                            <td class="px-4 py-2">Heat Shrink</td>
-                            <td class="px-4 py-2">Assorted Sizes</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1 Pack</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">31</td>
-                            <td class="px-4 py-2">Misc Material</td>
-                            <td class="px-4 py-2">Solder, Flux</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">1 Lot</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">32</td>
-                            <td class="px-4 py-2">Transport</td>
-                            <td class="px-4 py-2">—</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">N/A</td>
-                        </tr>
-                        <tr class="border-t border-gray-700">
-                            <td class="px-4 py-2">33</td>
-                            <td class="px-4 py-2">Labour</td>
-                            <td class="px-4 py-2">—</td>
-                            <td class="px-4 py-2">N/A</td>
-                            <td class="px-4 py-2">N/A</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div id="bom-list" class="space-y-4"></div>
         </section>
     </main>
 
@@ -546,7 +338,7 @@
                 const filteredData = filter === 'all' ? componentData : componentData.filter(c => c.category === filter);
                 filteredData.forEach(component => {
                     const card = document.createElement('div');
-                    card.className = 'card p-6';
+                    card.className = 'card p-6 text-center';
                     card.innerHTML = `
                         <h4 class="text-xl font-semibold mb-2 text-white">${component.name}</h4>
                         <p class="text-sm">${component.category}</p>
@@ -567,8 +359,57 @@
                 });
             });
 
-            // Initialize with all components
             renderComponents('all');
+
+            const bomData = [
+                { srNo: '1', description: 'Main MCU', name: 'STM32G474RET6', company: 'STMicroelectronics', qty: '1' },
+                { srNo: '2', description: 'HMI Display', name: 'Nextion 3.5" HMI', company: 'Nextion (ITEAD)', qty: '1' },
+                { srNo: '3', description: 'HMI-MCU Cable', name: '4-Pin Jumper Wires', company: 'N/A', qty: '1' },
+                { srNo: '4', description: 'Power IC (MCU)', name: 'LM2596S-3.3', company: 'Texas Instruments', qty: '1' },
+                { srNo: '5', description: 'Power Diode', name: 'Schottky (SS34)', company: 'N/A', qty: '1' },
+                { srNo: '6', description: 'Filter Cap (24V)', name: '100µF, 50V', company: 'N/A', qty: '1' },
+                { srNo: '7', description: 'Filter Cap (24V)', name: '0.1µF Ceramic', company: 'N/A', qty: '1' },
+                { srNo: '8', description: 'Filter Cap (3.3V)', name: '10µF, 10V', company: 'N/A', qty: '1' },
+                { srNo: '9', description: 'Filter Cap (3.3V)', name: '0.1µF Ceramic', company: 'N/A', qty: '1' },
+                { srNo: '10', description: 'TVS Diode (24V)', name: 'SMBJ24A', company: 'Littelfuse', qty: '1' },
+                { srNo: '11', description: 'TVS Diode (3.3V)', name: 'SMF3.3A', company: 'Vishay', qty: '1' },
+                { srNo: '12', description: 'Input Optocoupler', name: 'HCPL-0630', company: 'Broadcom', qty: '5' },
+                { srNo: '13', description: 'Output SSR', name: 'G3VM-61G1', company: 'Omron', qty: '8' },
+                { srNo: '14', description: 'Input Resistors', name: '1.8 kΩ, 1/4W', company: 'N/A', qty: '5' },
+                { srNo: '15', description: 'Output Resistors', name: '10 kΩ, 1/4W', company: 'N/A', qty: '8' },
+                { srNo: '16', description: 'Output Transistors', name: 'MOSFET (2N7000)', company: 'N/A', qty: '8' },
+                { srNo: '17', description: 'MCU Crystal', name: '8 MHz Crystal', company: 'N/A', qty: '1' },
+                { srNo: '18', description: 'Reset Button', name: 'Tactile Switch', company: 'N/A', qty: '1' },
+                { srNo: '19', description: 'Power LED', name: 'Green LED', company: 'N/A', qty: '1' },
+                { srNo: '20', description: 'Heartbeat LED', name: 'Blue LED', company: 'N/A', qty: '1' },
+                { srNo: '21', description: 'Limit Resistor', name: '330 Ω, 1/4W', company: 'N/A', qty: '2' },
+                { srNo: '22', description: 'Input Terminal', name: '2-pin Terminal', company: 'Phoenix Contact', qty: '5' },
+                { srNo: '23', description: 'Output Terminal', name: '2-pin Terminal', company: 'Phoenix Contact', qty: '8' },
+                { srNo: '24', description: 'PCB Terminal', name: '2-pin Connector', company: 'N/A', qty: '2' },
+                { srNo: '25', description: 'DIN Rail Holder', name: '—', company: 'Phoenix Contact', qty: '1' },
+                { srNo: '26', description: 'Custom PCB', name: '—', company: 'Local Fabricator', qty: '1' },
+                { srNo: '27', description: 'Wires', name: '22AWG Wires', company: 'N/A', qty: '1 Roll' },
+                { srNo: '28', description: 'Wire Ferrules', name: '0.5 mm²', company: 'N/A', qty: '1 Pack' },
+                { srNo: '29', description: 'Cable Ties', name: 'Assorted Ties', company: 'N/A', qty: '1 Pack' },
+                { srNo: '30', description: 'Heat Shrink', name: 'Assorted Sizes', company: 'N/A', qty: '1 Pack' },
+                { srNo: '31', description: 'Misc Material', name: 'Solder, Flux', company: 'N/A', qty: '1 Lot' },
+                { srNo: '32', description: 'Transport', name: '—', company: 'N/A', qty: 'N/A' },
+                { srNo: '33', description: 'Labour', name: '—', company: 'N/A', qty: 'N/A' }
+            ];
+
+            const bomList = document.getElementById('bom-list');
+            bomData.forEach(item => {
+                const bomItem = document.createElement('div');
+                bomItem.className = 'bom-item';
+                bomItem.innerHTML = `
+                    <span><strong>Sr. No:</strong> ${item.srNo}</span>
+                    <span><strong>Description:</strong> ${item.description}</span>
+                    <span><strong>Name:</strong> ${item.name}</span>
+                    <span><strong>Company:</strong> ${item.company}</span>
+                    <span><strong>Qty:</strong> ${item.qty}</span>
+                `;
+                bomList.appendChild(bomItem);
+            });
         });
     </script>
 </body>
