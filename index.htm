@@ -27,23 +27,6 @@
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
-        .section-scroll {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .section-scroll.visible {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-        }
-        @media (min-width: 768px) {
-            .section-scroll.visible {
-                transform: scale(1.05);
-            }
-        }
-        @media (max-width: 767px) {
-            .section-scroll.visible {
-                transform: scale(1.02);
-                box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-            }
-        }
         .component-table td, .component-table th {
             @media (max-width: 767px) {
                 max-width: 120px;
@@ -80,14 +63,14 @@
     </header>
 
     <main class="container mx-auto px-4 sm:px-6 py-12">
-        <section class="hero mb-16 sm:mb-24 section-scroll">
+        <section class="hero mb-16 sm:mb-24">
             <div class="text-center">
                 <h1 class="text-3xl sm:text-5xl font-bold text-slate-800 mb-4">Innovate. Control. Succeed.</h1>
                 <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">Leading the future of embedded systems for industrial automation with cutting-edge technology.</p>
             </div>
         </section>
 
-        <section id="overview" class="mb-16 sm:mb-24 scroll-mt-24 section-scroll">
+        <section id="overview" class="mb-16 sm:mb-24 scroll-mt-24">
             <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-4 text-center">PCS Control Panel Modernization</h2>
             <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto text-center mb-8 sm:mb-12">
                 This project converts the Powder Transfer System's (PCS) lower control panel from a traditional, hard-wired relay system to a modern, flexible, and highly protected embedded system, enhancing reliability, simplifying maintenance, and enabling advanced control capabilities.
@@ -109,7 +92,7 @@
             </div>
         </section>
 
-        <section id="components" class="mb-16 sm:mb-24 scroll-mt-24 section-scroll">
+        <section id="components" class="mb-16 sm:mb-24 scroll-mt-24">
             <div class="text-center mb-8 sm:mb-12">
                 <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">Component Explorer</h2>
                 <p class="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto">Explore the components of the modernized PCS control panel. Use filters to sort by category.</p>
@@ -126,7 +109,7 @@
             <div id="component-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"></div>
         </section>
 
-        <section id="protection" class="mb-16 sm:mb-24 scroll-mt-24 section-scroll">
+        <section id="protection" class="mb-16 sm:mb-24 scroll-mt-24">
             <div class="text-center mb-8 sm:mb-12">
                 <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">Highly Protected Circuit Design</h2>
                 <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">The embedded system includes multiple protection layers for reliability and safety. Hover to learn more.</p>
@@ -151,12 +134,12 @@
             </div>
         </section>
 
-        <section id="bom" class="mb-16 sm:mb-24 scroll-mt-24 section-scroll">
+        <section id="bom" class="mb-16 sm:mb-24 scroll-mt-24">
             <div class="text-center mb-8 sm:mb-12">
                 <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">Bill of Materials</h2>
                 <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">Detailed list of components for the modernized PCS control panel.</p>
             </div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto mx-auto max-w-[calc(100%-10rem)]">
                 <table class="component-table w-full bg-white rounded-lg shadow-lg">
                     <thead>
                         <tr class="bg-gradient-to-r from-blue-600 to-pink-600 text-white">
@@ -510,26 +493,6 @@
             };
 
             window.addEventListener('scroll', onScroll);
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.2
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    } else {
-                        entry.target.classList.remove('visible');
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
         });
     </script>
 </body>
