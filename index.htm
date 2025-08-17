@@ -27,28 +27,29 @@
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
-        .component-table td, .component-table th {
+        .component-table td {
             @media (max-width: 767px) {
                 max-width: 120px;
                 white-space: normal;
+                font-size: 10pt;
             }
             @media (min-width: 768px) {
                 max-width: 150px;
                 white-space: normal;
+                font-size: 11pt;
             }
         }
-        .click-me {
-            animation: pulse 1.5s infinite;
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-        }
-        .click-me:hover {
-            transform: scale(1.08);
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
+        .component-table th {
+            @media (max-width: 767px) {
+                max-width: 120px;
+                white-space: normal;
+                font-size: 9pt;
+            }
+            @media (min-width: 768px) {
+                max-width: 150px;
+                white-space: normal;
+                font-size: 9.5pt;
+            }
         }
     </style>
 </head>
@@ -110,13 +111,13 @@
                 <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">Component Explorer</h2>
                 <p class="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto">Explore the components of the modernized PCS control panel. Use filters to sort by category.</p>
                 <div id="component-filters" class="mt-4 sm:mt-6 flex justify-center flex-wrap gap-2">
-                    <button data-filter="all" class="filter-btn bg-blue-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-md text-xs sm:text-sm click-me">All</button>
-                    <button data-filter="Microcontrollers" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Microcontrollers</button>
-                    <button data-filter="Display" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Display</button>
-                    <button data-filter="Power Components" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Power Components</button>
-                    <button data-filter="I/O Components" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">I/O Components</button>
-                    <button data-filter="Mechanical" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Mechanical</button>
-                    <button data-filter="Miscellaneous" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm click-me">Miscellaneous</button>
+                    <button data-filter="all" class="filter-btn bg-blue-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-md text-xs sm:text-sm">All</button>
+                    <button data-filter="Microcontrollers" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Microcontrollers</button>
+                    <button data-filter="Display" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Display</button>
+                    <button data-filter="Power Components" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Power Components</button>
+                    <button data-filter="I/O Components" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">I/O Components</button>
+                    <button data-filter="Mechanical" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Mechanical</button>
+                    <button data-filter="Miscellaneous" class="filter-btn bg-white text-slate-600 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md border text-xs sm:text-sm">Miscellaneous</button>
                 </div>
             </div>
             <div id="component-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"></div>
@@ -152,248 +153,248 @@
                 <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">Bill of Materials</h2>
                 <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">Detailed list of components for the modernized PCS control panel.</p>
             </div>
-            <div class="overflow-x-auto mx-auto max-w-[calc(100%-10rem)]">
+            <div class="overflow-x-auto mx-auto w-full">
                 <table class="component-table w-full bg-white rounded-lg shadow-lg">
                     <thead>
                         <tr class="bg-gradient-to-r from-blue-600 to-pink-600 text-white">
-                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold text-xs sm:text-sm">Sr. No.</th>
-                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold text-xs sm:text-sm">Description</th>
-                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold text-xs sm:text-sm">Name</th>
-                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold text-xs sm:text-sm">Company</th>
-                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold text-xs sm:text-sm">Qty</th>
+                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold">Sr. No.</th>
+                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold">Description</th>
+                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold">Name</th>
+                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold">Company</th>
+                            <th class="px-2 sm:px-3 py-2 sm:py-3 text-left font-semibold">Qty</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Main MCU</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">STM32G474RET6</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">STMicroelectronics</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Main MCU</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">STM32G474RET6</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">STMicroelectronics</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">2</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">HMI Display</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Nextion 3.5" HMI</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Nextion (ITEAD)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">2</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">HMI Display</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Nextion 3.5" HMI</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Nextion (ITEAD)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">3</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">HMI-MCU Cable</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">4-Pin Jumper Wires</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">3</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">HMI-MCU Cable</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">4-Pin Jumper Wires</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">4</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Power IC (MCU)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">LM2596S-3.3</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Texas Instruments</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">4</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Power IC (MCU)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">LM2596S-3.3</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Texas Instruments</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">5</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Power Diode</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Schottky (SS34)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">5</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Power Diode</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Schottky (SS34)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">6</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Filter Cap (24V)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">100µF, 50V</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">6</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Filter Cap (24V)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">100µF, 50V</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">7</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Filter Cap (24V)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">0.1µF Ceramic</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">7</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Filter Cap (24V)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">0.1µF Ceramic</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">8</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Filter Cap (3.3V)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">10µF, 10V</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">8</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Filter Cap (3.3V)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">10µF, 10V</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">9</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Filter Cap (3.3V)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">0.1µF Ceramic</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">9</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Filter Cap (3.3V)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">0.1µF Ceramic</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">10</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">TVS Diode (24V)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">SMBJ24A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Littelfuse</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">10</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">TVS Diode (24V)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">SMBJ24A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Littelfuse</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">11</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">TVS Diode (3.3V)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">SMF3.3A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Vishay</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">11</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">TVS Diode (3.3V)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">SMF3.3A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Vishay</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">12</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Input Optocoupler</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">HCPL-0630</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Broadcom</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">5</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">12</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Input Optocoupler</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">HCPL-0630</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Broadcom</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">5</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">13</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Output SSR</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">G3VM-61G1</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Omron</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">8</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">13</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Output SSR</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">G3VM-61G1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Omron</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">8</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">14</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Input Resistors</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1.8 kΩ, 1/4W</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">5</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">14</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Input Resistors</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1.8 kΩ, 1/4W</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">5</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">15</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Output Resistors</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">10 kΩ, 1/4W</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">8</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">15</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Output Resistors</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">10 kΩ, 1/4W</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">8</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">16</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Output Transistors</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">MOSFET (2N7000)</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">8</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">16</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Output Transistors</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">MOSFET (2N7000)</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">8</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">17</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">MCU Crystal</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">8 MHz Crystal</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">17</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">MCU Crystal</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">8 MHz Crystal</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">18</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Reset Button</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Tactile Switch</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">18</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Reset Button</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Tactile Switch</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">19</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Power LED</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Green LED</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">19</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Power LED</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Green LED</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">20</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Heartbeat LED</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Blue LED</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">20</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Heartbeat LED</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Blue LED</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">21</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Limit Resistor</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">330 Ω, 1/4W</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">2</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">21</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Limit Resistor</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">330 Ω, 1/4W</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">2</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">22</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Input Terminal</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">2-pin Terminal</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Phoenix Contact</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">5</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">22</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Input Terminal</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">2-pin Terminal</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Phoenix Contact</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">5</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">23</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Output Terminal</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">2-pin Terminal</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Phoenix Contact</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">8</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">23</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Output Terminal</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">2-pin Terminal</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Phoenix Contact</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">8</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">24</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">PCB Terminal</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">2-pin Connector</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">2</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">24</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">PCB Terminal</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">2-pin Connector</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">2</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">25</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">DIN Rail Holder</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">—</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Phoenix Contact</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">25</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">DIN Rail Holder</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">—</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Phoenix Contact</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">26</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Custom PCB</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">—</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Local Fabricator</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">26</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Custom PCB</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">—</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Local Fabricator</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">27</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Wires</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">22AWG Wires</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1 Roll</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">27</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Wires</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">22AWG Wires</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1 Roll</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">28</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Wire Ferrules</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">0.5 mm²</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1 Pack</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">28</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Wire Ferrules</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">0.5 mm²</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1 Pack</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">29</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Cable Ties</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Assorted Ties</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1 Pack</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">29</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Cable Ties</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Assorted Ties</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1 Pack</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">30</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Heat Shrink</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Assorted Sizes</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1 Pack</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">30</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Heat Shrink</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Assorted Sizes</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1 Pack</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">31</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Misc Material</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Solder, Flux</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">1 Lot</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">31</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Misc Material</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Solder, Flux</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">1 Lot</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">32</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Transport</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">—</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">32</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Transport</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">—</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
                         </tr>
                         <tr class="border-b border-slate-200">
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">33</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">Labour</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">—</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
-                            <td class="px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">33</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">Labour</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">—</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
+                            <td class="px-2 sm:px-3 py-2 sm:py-3">N/A</td>
                         </tr>
                     </tbody>
                 </table>
@@ -462,7 +463,7 @@
                             <h4 class="font-semibold text-xs sm:text-sm text-slate-800">${component.name}</h4>
                             <span class="text-xs font-medium bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded-full">${component.type}</span>
                         </div>
-                        <div class="text-xs sm:text-sm text-slate-500">
+                        <div class="text-xs sm:text-sm text-slate-600">
                             <p><strong>Component:</strong> ${component.catNo}</p>
                             <p><strong>Mfr:</strong> ${component.manufacturer}</p>
                             <p><strong>Qty:</strong> ${component.quantity}</p>
@@ -476,18 +477,18 @@
                 filterButtons.forEach(btn => {
                     const filter = btn.dataset.filter;
                     if (filter === activeFilter) {
-                        btn.classList.remove('bg-white', 'text-slate-600', 'border', 'click-me');
+                        btn.classList.remove('bg-white', 'text-slate-600', 'border');
                         btn.classList.add('bg-blue-600', 'text-white');
                     } else {
                         btn.classList.remove('bg-blue-600', 'text-white');
-                        btn.classList.add('bg-white', 'text-slate-600', 'border', 'click-me');
+                        btn.classList.add('bg-white', 'text-slate-600', 'border');
                     }
                 });
-                // Ensure "All" has click-me animation if no filter is active
+                // Ensure "All" is highlighted if no filter is active
                 if (!activeFilter) {
                     const allButton = document.querySelector('.filter-btn[data-filter="all"]');
                     allButton.classList.remove('bg-white', 'text-slate-600', 'border');
-                    allButton.classList.add('bg-blue-600', 'text-white', 'click-me');
+                    allButton.classList.add('bg-blue-600', 'text-white');
                 }
             };
 
@@ -505,7 +506,7 @@
                 });
             });
 
-            // Initialize with no components displayed and "All" button highlighted with animation
+            // Initialize with no components displayed and "All" button highlighted
             updateButtonStyles();
 
             const navLinks = document.querySelectorAll('.nav-link');
